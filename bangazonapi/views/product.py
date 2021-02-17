@@ -103,7 +103,11 @@ class Products(ViewSet):
             new_product.image_path = data
 
         new_product.save()
-
+        try:
+            new_product.clean_fields(exclude="image_path")
+            new_product.save()
+        except ValidationError as ex:
+            return Response({"message": ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
         serializer = ProductSerializer(
             new_product, context={'request': request})
 
@@ -182,7 +186,11 @@ class Products(ViewSet):
 
         product_category = ProductCategory.objects.get(pk=request.data["category_id"])
         product.category = product_category
-        product.save()
+        try:
+            product.clean_fields(exclude="image_path")
+            product.save()
+        except ValidationError as ex:
+            return Response({"message": ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
