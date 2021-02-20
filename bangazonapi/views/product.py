@@ -102,7 +102,6 @@ class Products(ViewSet):
 
             new_product.image_path = data
 
-        new_product.save()
         try:
             new_product.clean_fields(exclude="image_path")
             new_product.save()
