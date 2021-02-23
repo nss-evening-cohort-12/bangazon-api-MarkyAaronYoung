@@ -1,2 +1,2 @@
 from .connection import Connection
-from .users.usersfavoritesellers import userfavseller_list
+from .users.favorited_sellers import favorited_sellers

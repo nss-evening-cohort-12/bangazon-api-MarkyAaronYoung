@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import userfavseller_list
+from .views import favorited_sellers
 
 urlpatterns = [
-    path('reports/userfavorites', userfavseller_list),
+    path('reports/favoritesellers', favorited_sellers),
 ]
