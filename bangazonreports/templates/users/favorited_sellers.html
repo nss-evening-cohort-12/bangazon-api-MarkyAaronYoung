@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+    <meta charset="utf-8">
+    <title>Bangazon Reports - {{ report_title }}</title>
+  </head>
+  <body>
+    <h1>{{ report_title }}</h1>
+  <ul>
+  {% for customer, favorites in favorites_list.items %}
+    <li>
+      {{ customer }}
+        <ul>
+          {% for favorite in favorites %}
+            <li>
+                {{ favorite }}
+            </li>
+          {% endfor %}
+        </ul>
+    </li>
+  {% endfor %}
+    </ul>
+  </body>
+</html>
